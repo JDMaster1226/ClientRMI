@@ -42,6 +42,7 @@ public class MainClient {
 					System.out.println("1.ver productos"
 							+ "\n2.agregar compra"
 							+ "\n3.salir");
+					opcion=sc.nextInt();
 					switch (opcion) {
 					case 1:
 						System.out.println(remoteMethods.listaStock());
