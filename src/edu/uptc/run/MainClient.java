@@ -33,7 +33,8 @@ public class MainClient {
 			IMethods remoteMethods= conexion.searchServer();
 			if (remoteMethods != null) {
 				Scanner sc =new Scanner(System.in);
-				String nombreUser="juan";
+				System.out.println("escriba usuario");
+				String nombreUser=sc.next();
 				remoteMethods.saludo(nombreUser);
 
 				int opcion = 1;
@@ -49,16 +50,22 @@ public class MainClient {
 						break;
 
 					case 2:
-						String nombreProducto=sc.nextLine();
+						System.out.println("nombre producto");
+						String nombreProducto=sc.next();
+						System.out.println("cantidad ");
 						int cantidad=sc.nextInt();
-						if(remoteMethods.agregarCompra(nombreUser, nombreProducto, cantidad)) {
-							System.out.println("compra exitosa");
+						double total=remoteMethods.agregarCompra(nombreUser, nombreProducto, cantidad);
+						if(total>=0) {
+							System.out.println("compra exitosa, total = "+total+"$");
+						}else if(total==-1) {
+							System.out.println("error, producto no encontrado");
 						}else {
-							System.out.println("error, verifique los datos");
+							System.out.println("error, cantidad no disponible");
 						}
 						break;
 						
 					default:
+						System.out.println("hasta luego....");
 						break;
 					}
 				}
